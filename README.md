@@ -2,14 +2,13 @@
 
 L'objectif de ce projet est de déployer un site e-commerce sous Prestashop, sur un serveur Linux à distance, le tout de manière sécurisée.
 
-
-## Table of contents
+## Sommaire
 
 - Installation
 - Configuration
 - Troubleshooting
 
-## Configuration
+## Configuration du serveur
 
 ### 1. Sécurisation du serveur Linux
 - Mises à jour des paquets et noyau Linux : ```sudo apt-get update && upgrade```
@@ -24,47 +23,54 @@ L'objectif de ce projet est de déployer un site e-commerce sous Prestashop, sur
 - Encryption: files and passwords
 Full disk encryption is a must for securing data, and is supported by most Linux distributions. See how to encrypting harddisk using LUKS on Linux. Make sure swap is also encrypted. Require a password to edit bootloader.
 - Firewall :
+
 Installer les outils pour génerer le certificat SSL :
 ```sudo apt install certbot python3-certbot-apache```
+
 modifier la configuration Prestashop :
 ```sudo nano /etc/apache2/sites-available/prestashop.conf```
+
 et vérifier que le Servername est bon :
 ```ServerName groupe1.dev-cyber.wilders.dev```
+
 Redémarrer apache2 :
 ```sudo systemctl reload apache2```
-verifier Firewall :
+
+Vérifier le statut du Firewall :
 ```sudo ufw status```
-verifier version ssh or ssh exist :
+
+Vérifier la version SSH :
 ```ssh -V```
 ```sudo nano /etc/default/ufw```
 ```sudo ufw allow ssh```
 ```sudo ufw allow 22```
 ```cat /etc/ssh/sshd_config```
+
 Activer firewall :
 ```sudo ufw enable```
-add rules pour firewall :
+
+Gérer les règles du firewall :
 ```sudo ufw allow 'openSSH'```
 ```sudo ufw allow 'Apache Full'```
 ```sudo ufw delete allow 'Apache'```
-demander certbot generer ssl certification :
+
+Demander la génération du certificat ssl :
 ```sudo certbot --apache```
 
 ### 3. IAM
 - utiliser chacun un compte user et ne pas rester loggé en root
-- utiliser des mdp forts (+ de 8 caractères, mélange de lettres, chiffres, !ù%)
-- choix de ne pas de password aging (veille des bonnes pratiques) ?
+- utiliser des mdp forts (+ de 8 caractères, mélange de lettres, chiffres, caractères spéciaux)
 - Make Sure No Non-Root Accounts Have UID Set To 0
 
-## Installation
+## Installation de Prestashop
 - Télécharger l'install [PrestaShop](https://prestashop.fr/prestashop-edition-basic/) sur le site officiel (se créer un compte) : ```sudo wget liendufichier.zip```
-- [Apache](https://httpd.apache.org/)
-- [PHP](https://www.php.net/manual/fr/intro-whatis.php)
-- [MySQL](https://www.mysql.com/fr/)
+- [Apache](https://doc.ubuntu-fr.org/apache2#installation)
+- [PHP](https://doc.ubuntu-fr.org/php#installation)
+- [MySQL](https://doc.ubuntu-fr.org/mysql#installation)
 
 ## Troubleshooting
 
-## Later
+## Idéalement
 - Logging and Auditing
 - System Accounting with auditd
-- Install And Use Intrusion Detection System
 - Make backups
