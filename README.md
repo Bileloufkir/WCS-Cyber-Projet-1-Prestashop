@@ -4,11 +4,11 @@ The aim of this project is to deploy an e-commerce site under the [CMS](https://
 For installation instructions, go to the INSTALL.md file
 
 ## Table of contents
-### Contributors
-### Linux Setup
-### Installing Prestashop
-### Troubleshooting
-### Improvements
+#### Contributors
+#### Linux Setup
+#### Installing Prestashop
+#### Troubleshooting
+#### Improvements
 
 ## Contributors
 Bilel, Katia, Kelyan, Zhiying
@@ -20,17 +20,17 @@ We worked with Trello to divide the tasks that the PO identified for the week, a
 
 #### Week 1:
 PO: Katia,
-Lead Tech: Kelyan
+Lead Tech: Kelyan,
 Devops: Bilel, Zhiying
 
 #### Week 2:
 PO: Kelyan,
-Lead Tech: Katia
+Lead Tech: Katia,
 Devops: Bilel, Zhiying
 
 #### Week 3:
 PO: Bilel,
-Lead Tech: Zhiying
+Lead Tech: Zhiying,
 Devops: Katia, Kelyan
 
 ## Server Setup
@@ -58,7 +58,6 @@ See INSTALL.md for more.
 ## Troubleshooting
 - Server memory size (Prestashop need at least 2GB RAM for the install)
 - At each install attempt, you need to delete and recreate the MySQL databases, otherwise Prestashop will prompt an error during the installation
-
 
 ## Improvements
 - Configure Headers Apache
