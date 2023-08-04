@@ -3,11 +3,10 @@
 The aim of this project is to deploy an e-commerce site under Prestashop, on a remote Linux server, in a secure way.
 
 ## Table of contents
-
-- Pre-requisites with versions
-- Server setup
-- Installation
-- Troubleshooting
+#### Pre-requisites with versions
+#### Server setup
+#### Installation
+#### Troubleshooting
 
 ## Pre-requisites
 - [Apache](https://doc.ubuntu-fr.org/apache2#installation) Server version: Apache/2.4.52 (Ubuntu)
