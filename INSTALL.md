@@ -124,8 +124,8 @@ sudo apt install certbot python3-certbot-apache
 Create the Prestashop configuration in ```/etc/apache2/sites-available/prestashop.conf```:
 ```bash
 <VirtualHost *:80>
-ServerAdmin bilel-oufkir_student2023@wilder.school
-ServerName groupe1.dev-cyber.wilders.dev
+ServerAdmin [your email address]
+ServerName [your domain name] #as for us groupe1.dev-cyber.wilders.dev
 
 DocumentRoot /var/www/prestashop
 
@@ -138,7 +138,7 @@ Require all granted
 ErrorLog /var/log/apache2/prestashop-error_log
 CustomLog /var/log/apache2/prestashop-access_log common
 RewriteEngine on
-RewriteCond %{SERVER_NAME} =groupe1.dev-cyber.wilders.dev
+RewriteCond %{SERVER_NAME}=[your domain name] #as for us groupe1.dev-cyber.wilders.dev
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
@@ -181,11 +181,9 @@ sudo certbot --apache
 ```
 
 ### 3. IAM
-- each use a user account and do not remain logged in as root
+- use a user account and do not remain logged in as root
 - use strong passwords (+ 8 characters, mixture of letters, numbers, special characters)
-
-- to avoid directory listing, in the file ```/var/www/prestashop/.htaccess```, add: ```"-Indexes"```
-in the line:
+- avoid directory listing by adding ```"-Indexes"``` in the file ```/var/www/prestashop/.htaccess```:
 ```bash
 "Options +FollowSymlinks -Indexes"
 ```
