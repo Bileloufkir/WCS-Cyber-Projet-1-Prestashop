@@ -120,6 +120,73 @@ Install the tools to generate the SSL certificate:
 sudo apt install certbot python3-certbot-apache
 ```
 
+Restart apache2:
+```bash
+sudo systemctl reload apache2
+```
+
+Check SSH version:
+```bash
+ssh -V
+sudo nano /etc/default/ufw
+sudo ufw allow ssh
+cat /etc/ssh/sshd_config
+```
+
+Enable firewall:
+```bash
+sudo ufw enable
+```
+
+Manage firewall rules:
+```bash
+sudo ufw allow 'openSSH'
+sudo ufw allow 'Apache Full'
+sudo ufw delete allow 'Apache'
+```
+and filter SSH ports with moderator IPs
+
+Check firewall status with ```sudo ufw status```:
+```bash
+Status: active
+
+To                         Action      From
+--                         ------      ----
+80                         ALLOW       Anywhere
+443                        ALLOW       Anywhere
+2050/tcp                   ALLOW       <IP address>
+80 (v6)                    ALLOW       Anywhere (v6)
+443 (v6)                   ALLOW       Anywhere (v6)
+2050/tcp                   ALLOW       <IP address>
+
+```
+
+Request the generation of the ssl certificate:
+```bash
+sudo certbot --apache
+```
+#### Disable indexing
+```bash
+sudo nano /var/www/prestashop/robots.txt
+```
+Delete all rules and leave only "Disable /"
+
+### 3. IAM
+- use a user account and do not remain logged in as root
+- use strong passwords (+ 8 characters, mixture of letters, numbers, special characters)
+- avoid directory listing by adding ```"-Indexes"``` in the file ```/var/www/prestashop/.htaccess```:
+```bash
+"Options +FollowSymlinks -Indexes"
+```
+
+## Installing Prestashop
+#### Download the [PrestaShop](https://prestashop.fr/prestashop-edition-basic/) install from the official website (you have to create an account):
+```bash
+sudo wget <file_link>.zip
+```
+#### Unzip and install the file
+``` (copy commandlines) ```
+
 Create the Prestashop configuration in ```/etc/apache2/sites-available/prestashop.conf```:
 ```bash
 <VirtualHost *:80>
@@ -143,61 +210,6 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 ```
 
 and delete the other default-config file.
-
-Restart apache2:
-```bash
-sudo systemctl reload apache2
-```
-
-Check Firewall status:
-```bash
-sudo ufw status
-```
-
-Check SSH version:
-```bash
-ssh -V
-sudo nano /etc/default/ufw
-sudo ufw allow ssh
-cat /etc/ssh/sshd_config
-```
-
-Enable firewall:
-```bash
-sudo ufw enable
-```
-
-Manage firewall rules:
-```bash
-sudo ufw allow 'openSSH'
-sudo ufw allow 'Apache Full'
-sudo ufw delete allow 'Apache'
-```
-
-Request the generation of the ssl certificate:
-```bash
-sudo certbot --apache
-```
-
-#### Disable all from /var/www/prestashop/robots.txt
-```bash
-sudo nano /var/www/prestashop/robots.txt
-```
-Delete all rules and leave only "Disable /"
-
-### 3. IAM
-- use a user account and do not remain logged in as root
-- use strong passwords (+ 8 characters, mixture of letters, numbers, special characters)
-- avoid directory listing by adding ```"-Indexes"``` in the file ```/var/www/prestashop/.htaccess```:
-```bash
-"Options +FollowSymlinks -Indexes"
-```
-
-## Installing Prestashop
-#### Download the [PrestaShop](https://prestashop.fr/prestashop-edition-basic/) install from the official website (you have to create an account):
-```bash
-sudo wget <file_link>.zip
-```
 
 ### 1. Database creation
 For the installation, we first need to create a database with MySQL, and a user with all privileges to create the tables needed by Prestashop:
