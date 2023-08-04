@@ -129,7 +129,6 @@ Check SSH version:
 ```bash
 ssh -V
 sudo nano /etc/default/ufw
-sudo ufw allow ssh
 cat /etc/ssh/sshd_config
 ```
 
@@ -142,9 +141,16 @@ Manage firewall rules:
 ```bash
 sudo ufw allow 'openSSH'
 sudo ufw allow 'Apache Full'
-sudo ufw delete allow 'Apache'
+or
+sudo ufw allow 2050
+sudo ufw allow 80
+sudo ufw allow 443
 ```
 and filter SSH ports with moderator IPs
+```bash
+sudo ufw allow proto tcp from $adressIP to any port 2025
+```
+
 
 Check firewall status with ```sudo ufw status```:
 ```bash
