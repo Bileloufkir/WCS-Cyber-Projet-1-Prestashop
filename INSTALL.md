@@ -179,6 +179,12 @@ Request the generation of the ssl certificate:
 sudo certbot --apache
 ```
 
+#### Disable all from /var/www/prestashop/robots.txt
+```bash
+sudo nano /var/www/prestashop/robots.txt
+```
+Delete all rules and leave only "Disable /"
+
 ### 3. IAM
 - use a user account and do not remain logged in as root
 - use strong passwords (+ 8 characters, mixture of letters, numbers, special characters)
