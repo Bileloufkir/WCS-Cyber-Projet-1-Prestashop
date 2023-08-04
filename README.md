@@ -56,13 +56,14 @@ We followed the [Prestashop official recommended pre-requisites](https://devdocs
 
 See INSTALL.md for more.
 
+Also we change the content on /robots.txt to "Disallow /" to avoid indexation (as this is for a test server and not a real merchandising website)
+
 ## Troubleshooting
 - Server memory size (Prestashop need at least 2GB RAM for the install)
 - At each install attempt, you need to delete and recreate the MySQL databases, otherwise Prestashop will prompt an error during the installation
 
 ## Improvements
 - Configure Headers Apache
-- Change content on /robots.txt to "Disallow /" to avoid indexation (as this is for a test server and not a real merchandising website)
 - Launch automatic antivirus scans
 
 #### What we did not to during this project but would be necessary in a larger project:
