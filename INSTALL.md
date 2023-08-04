@@ -21,7 +21,7 @@ apt-get install php7.0-cli php7.0-common php7.0-curl php7.0-zip php7.0-gd php7.0
 ```
 
 ## Server Setup
-#### Create non root users:
+#### Create non root users with sudo access:
 ```bash
 sudo useradd -m -s /bin/bash -g <groupeName> -G sudo <userName>
 ```
@@ -57,11 +57,12 @@ Edit the following  file: ```/etc/apt/apt.conf.d/50unattended-upgradeset``` and 
 Save file
 
 ### 2. Securing connections
-#### Change the SSH port to a port >2034, for example port 2050:
+#### Change the SSH port to a port >2034, for example port 2050.
+In file /etc/ssh/sshd_config:
 ```bash
-sudo nano /etc/ssh/sshd_config
+Include /etc/ssh/sshd_config.d/*.conf
+Port 2050
 ```
-Add line for port 2050
 
 Reboot the service
 ```bash
@@ -103,22 +104,14 @@ Fail2ban is now installed and setup.
 To check the connections, the following commandline ```sudo fail2ban-client status sshd``` will show:
 ```bash
 Status for the jail: sshd
-
 |- Filter
-
-| |- Currently failed: 1
-
-| |- Total failed: 3
-
-| - File list: /var/log/auth.log `
-
-``- Actions`
-
-|- Currently banned: 1
-
-|- Total banned: 1
-
-``- Banned IP list: <IP>`
+|  |- Currently failed: 1
+|  |- Total failed:     6
+|  `- File list:        /var/log/auth.log
+`- Actions
+   |- Currently banned: 0
+   |- Total banned:     2
+   `- Banned IP list:
 ```
 
 #### Firewall install and setup:
@@ -128,15 +121,29 @@ Install the tools to generate the SSL certificate:
 sudo apt install certbot python3-certbot-apache
 ```
 
-Edit the Prestashop configuration:
+Create the Prestashop configuration in ```/etc/apache2/sites-available/prestashop.conf```:
 ```bash
-sudo nano /etc/apache2/sites-available/prestashop.conf
+<VirtualHost *:80>
+ServerAdmin bilel-oufkir_student2023@wilder.school
+ServerName groupe1.dev-cyber.wilders.dev
+
+DocumentRoot /var/www/prestashop
+
+<Directory /var/www/prestashop>
+Options +FollowSymlinks
+AllowOverride All
+Require all granted
+</Directory>
+
+ErrorLog /var/log/apache2/prestashop-error_log
+CustomLog /var/log/apache2/prestashop-access_log common
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =groupe1.dev-cyber.wilders.dev
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
 ```
 
-add this:
-```bash
-# copy our file
-```
+and delete the other default-config file.
 
 Restart apache2:
 ```bash
