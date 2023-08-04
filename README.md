@@ -14,27 +14,29 @@ For installation instructions, go to the INSTALL.md file
 Bilel, Katia, Kelyan, Zhiying
 
 ### Roles
-Depending on the week, the following roles were divided into the group: Product Owner, Devops.
+Depending on the week, the following roles were divided into the group: Product Owner, Lead Tech, Devops.
 
-We worked with Trello to divide the tasks that the PO identified for the week, and each week we made at least 2 meetings to follow what each member did, according to the DevOps instructions.
+We worked with Trello to divide the tasks that the PO identified for the week, and each week we made at least 2 meetings to follow what each member did, according to the Lead Tech instructions.
 
 #### Week 1:
 PO: Katia,
-Devops: Kelyan
+Lead Tech: Kelyan
+Devops: Bilel, Zhiying
 
 #### Week 2:
 PO: Kelyan,
-Devops: Katia
+Lead Tech: Katia
+Devops: Bilel, Zhiying
 
 #### Week 3:
 PO: Bilel,
-Devops: Zhiying
-
+Lead Tech: Zhiying
+Devops: Katia, Kelyan
 
 ## Server Setup
 ### 1. Securing the Linux server
 - Linux kernel and package updates
-- Create non-root user and disable root login
+- Create non-root user with sudo access and disable root SSH login
 - Use strong passwords (>8 characters, mixture of letters, numbers, special characters)
 - Antivirus setup
 - Automatic updates
@@ -60,8 +62,8 @@ See INSTALL.md for more.
 
 ## Improvements
 - Configure Headers Apache
-- Unable access to /robots.txt
-
+- Change content on /robots.txt to "Disallow /" to avoid indexation (as this is for a test server and not a real merchandising website)
+- Launch automatic antivirus scans
 
 #### What we did not to during this project but would be necessary in a larger project:
 - MFA configuration
