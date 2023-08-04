@@ -2,7 +2,7 @@
 
 The aim of this project is to deploy an e-commerce site under the [CMS](https://en.wikipedia.org/wiki/Content_management_system) [Prestashop](https://prestashop.fr/), on a remote Linux server, in a secure way.
 
-For installation instructions, go to the INSTALL.md file
+For installation instructions, go to the [INSTALL.md](https://github.com/Bileloufkir/WCS-Cyber-Projet-1-Prestashop/blob/main/INSTALL.md) file
 
 ## Table of contents
 #### Contributors
