@@ -21,32 +21,32 @@ apt-get install php7.0-cli php7.0-common php7.0-curl php7.0-zip php7.0-gd php7.0
 ```
 
 ## Server Setup
-Create non root users:
+#### Create non root users:
 ```bash
-sudo useradd -m -s /bin/bash -g $groupeName -G sudo $userName
+sudo useradd -m -s /bin/bash -g <groupeName> -G sudo <userName>
 ```
 
 ### 1. Securing the Linux server
-- Linux kernel and package updates:
+#### Linux kernel and package updates:
 ```bash
 sudo apt-get update && upgrade
 ```
 
-- Disable root login:
+#### Disable root login on SSH:
 
 In the ```/etc/ssh/sshd_config file```, edit PermitRootLogin to no:
 ```bash
 PermitRootLogin no
 ```
 
-- Antivirus setup:
+#### Antivirus setup:
 ```bash
 sudo apt install clamav
-sudo freshclam
-clamscan -r /
+sudo freshclam #updates
+clamscan -r / #scan
 ```
 
-- Automatic updates:
+#### Automatic updates:
 
 Install the "unattended-upgrade": 
 ```bash
@@ -57,7 +57,7 @@ Edit the following  file: ```/etc/apt/apt.conf.d/50unattended-upgradeset``` and 
 Save file
 
 ### 2. Securing connections
-- Change the SSH port to a port >2034, for example port 2050:
+#### Change the SSH port to a port >2034, for example port 2050:
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
@@ -68,14 +68,14 @@ Reboot the service
 sudo systemctl restart sshd
 ```
 
-Verification:
+#### Verification that the service listens to the 2050 port:
 ```bash
 netstat -tuln
 ```
 
-- Use fail2ban/denyhost as IDS
+#### Use fail2ban/denyhost as IDS
 
-Installer fail2ban:
+Install fail2ban:
 ```bash
 sudo apt install fail2ban
 ```
@@ -84,9 +84,9 @@ with this:
 ```bash
 [sshd]
 enabled = true
-port = 22
+port = 2050
 logpath = /var/log/auth.log
-maxretry = 3
+maxretry = 2
 bantime = 3600 # 1hour ban
 ```
 Restart fail2ban:
@@ -121,7 +121,7 @@ Status for the jail: sshd
 ``- Banned IP list: <IP>`
 ```
 
-- Firewall install and setup:
+#### Firewall install and setup:
 
 Install the tools to generate the SSL certificate:
 ```bash
@@ -178,7 +178,7 @@ sudo certbot --apache
 - each use a user account and do not remain logged in as root
 - use strong passwords (+ 8 characters, mixture of letters, numbers, special characters)
 
-- To avoid directory listing, in the file ```/var/www/prestashop/.htaccess```, add: ```"-Indexes"```
+- to avoid directory listing, in the file ```/var/www/prestashop/.htaccess```, add: ```"-Indexes"```
 in the line:
 ```bash
 "Options +FollowSymlinks -Indexes"
