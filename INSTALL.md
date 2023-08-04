@@ -148,7 +148,8 @@ sudo ufw allow 443
 ```
 and filter SSH ports with moderator IPs
 ```bash
-sudo ufw allow proto tcp from $adressIP to any port 2025
+sudo ufw allow proto tcp from $adressIP to any port 2050
+sudo ufw delete allow 2050
 ```
 
 
