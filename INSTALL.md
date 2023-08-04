@@ -133,9 +133,9 @@ Edit the Prestashop configuration:
 sudo nano /etc/apache2/sites-available/prestashop.conf
 ```
 
-and check that the Servername is correct:
+add this:
 ```bash
-ServerName groupe1.dev-cyber.wilders.dev
+# copy our file
 ```
 
 Restart apache2:
@@ -153,7 +153,6 @@ Check SSH version:
 ssh -V
 sudo nano /etc/default/ufw
 sudo ufw allow ssh
-sudo ufw allow 22
 cat /etc/ssh/sshd_config
 ```
 
@@ -185,21 +184,22 @@ in the line:
 ```
 
 ## Installing Prestashop
-- Download the [PrestaShop](https://prestashop.fr/prestashop-edition-basic/) install from the official website (you have to create an account):
+#### Download the [PrestaShop](https://prestashop.fr/prestashop-edition-basic/) install from the official website (you have to create an account):
 ```bash
-sudo wget $file_link.zip
+sudo wget <file_link>.zip
 ```
 
 ### 1. Database creation
 For the installation, we first need to create a database with MySQL, and a user with all privileges to create the tables needed by Prestashop:
-```bash
+```sql
 CREATE DATABASE prestashop_db;
 CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'passwd';
-GRANT ALL PRIVILEGES ON * . * TO 'new_user'@'localhost';
+GRANT ALL PRIVILEGES ON prestashop_db.* TO 'new_user'@'localhost';
 FLUSH PRIVILEGES
 ```
 
 ### 2. Follow Prestashop directions with your domain name and SQL database/user names
+(add screenshots and steps)
 ### 3. At the end of the installation, delete the /install file for security issues.
 
 ## Troubleshooting
