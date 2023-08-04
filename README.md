@@ -1,6 +1,7 @@
 # WCS-Cyber-Projet-1-Prestashop
 
 The aim of this project is to deploy an e-commerce site under the [CMS](https://en.wikipedia.org/wiki/Content_management_system) [Prestashop](https://prestashop.fr/), on a remote Linux server, in a secure way.
+
 For installation instructions, go to the INSTALL.md file
 
 ## Table of contents
@@ -14,24 +15,24 @@ For installation instructions, go to the INSTALL.md file
 Bilel, Katia, Kelyan, Zhiying
 
 ### Roles
-Depending on the week, the following roles were divided into the group: Product Owner, Lead Tech, Devops.
+Depending on the week, the following roles were divided into the group: **Product Owner, Lead Tech, Devops**.
 
-We worked with Trello to divide the tasks that the PO identified for the week, and each week we made at least 2 meetings to follow what each member did, according to the Lead Tech instructions.
+We worked with Trello to divide the tasks that the PO identified for the week, and each week we made at least 2 meetings to follow what each member did, according to the Lead Tech instructions, so that everybody would be up-to-date and be able to re-do the tasks by themselves.
 
-#### Week 1:
-PO: Katia,
-Lead Tech: Kelyan,
-Devops: Bilel, Zhiying
+#### _Week 1:_
+**PO:** Katia,
+**Lead Tech:** Kelyan,
+**Devops:** Bilel, Zhiying
 
-#### Week 2:
-PO: Kelyan,
-Lead Tech: Katia,
-Devops: Bilel, Zhiying
+#### _Week 2:_
+**PO:** Kelyan,
+**Lead Tech:** Katia,
+**Devops:** Bilel, Zhiying
 
-#### Week 3:
-PO: Bilel,
-Lead Tech: Zhiying,
-Devops: Katia, Kelyan
+#### _Week 3:_
+**PO:** Bilel,
+**Lead Tech:** Zhiying,
+**Devops:** Katia, Kelyan
 
 ## Server Setup
 ### 1. Securing the Linux server
